@@ -39,6 +39,15 @@ def restart_game():
             print("Invalid input, please enter 'Y' or 'N'.")
 
 
+def play_again():
+    while True:
+        again = input("Do you want to play again? Y or N? ").lower()
+        if again in {"yes", "y"}:
+            return True
+        else:
+            return False
+
+
 def game():
     while True:
         print("You start off in a bank vault, which way do you go?")
@@ -47,29 +56,28 @@ def game():
             if not restart_game():
                 break
         elif first_answer in {"left", "l"}:
-            print("")
-            print("You have entered the Main Offices full of people working.")
 
             while True:
+                print("")
+                print("You have entered the Main Offices full of people working.")
                 second_answer = input("Blend in or Run: ").lower()
                 if second_answer in {"run", "r"}:
                     if not restart_game():
-                        return
+                        return False
                     break
                 elif second_answer in {"blend in", "blend", "b"}:
-                    print("")
-                    print("You made it through!")
-                    print("You have now entered the bank lobby.")
 
                     while True:
+                        print("")
+                        print("You have now entered the bank lobby.")
                         third_answer = input("Front door or Fire Exit: ").lower()
                         if third_answer in {"front door", "front", "fd"}:
                             if not restart_game():
-                                return
+                                return False
                             break
                         elif third_answer in {"fire exit", "fire", "exit", "fe"}:
                             print("")
-                            print("You made it to the car!")
+                            print("You made it to the Get-Away car!")
                             print(
                                 """
            .      ..
@@ -78,14 +86,23 @@ def game():
 (.: {} :__L______: {} :__; __--( __- -_= ) 
    *--*           *--*    """
                             )
-                            return
+                            print("")
+                            return True
                         else:
-                            print("Invalid input, try again...")
+                            print(
+                                "Invalid input, try again... Type 'front door' or 'fire exit'"
+                            )
                     break
                 else:
-                    print("Invalid input, try again...")
+                    print("Invalid input, try again... Type 'blend in' or 'run'")
         else:
-            print("Invalid input, try again...")
+            print("Invalid input, try again... Type 'straight' or 'left'")
 
 
-game()
+while True:
+    if not game():
+        print("Thanks for playing!")
+        break
+    if not play_again():
+        print("Thanks for playing!")
+        break
