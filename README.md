@@ -1,4 +1,4 @@
-# get-away-game
+# Get-Away
 A simple RPG built in the console using Python.
 ```
                                  _..-------++._
@@ -18,4 +18,6 @@ A simple RPG built in the console using Python.
 | | \_  )| (         | |              | (   ) || || || || (   ) |   ) (   
 | (___) || (____/\   | |              | )   ( || () () || )   ( |   | |   
 (_______)(_______/   )_(              |/     \|(_______)|/     \|   \_/   
-```                                                                         
+```
+
+To start the game, simply download the file and run it using your CLI or your favorite IDE!
