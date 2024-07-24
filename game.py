@@ -31,6 +31,7 @@ def restart_game():
     while True:
         restart = input("You got caught... Want to try again? Y or N? ").lower()
         if restart in {"yes", "y"}:
+            print("")
             return True
         elif restart in {"no", "n"}:
             return False
@@ -42,7 +43,6 @@ def game():
     while True:
         print("You start off in a bank vault, which way do you go?")
         first_answer = input("Straight or Left: ").lower()
-
         if first_answer in {"straight", "s"}:
             if not restart_game():
                 break
@@ -50,31 +50,40 @@ def game():
             print("")
             print("You have entered the Main Offices full of people working.")
 
-            second_answer = input("Blend in or Run: ")
-            if second_answer.lower() in {"run", "r"}:
-                if not restart_game():
-                    break
-            elif second_answer.lower() in {"blend in", "blend", "b"}:
-                print("")
-                print("You made it through!")
-                print("You have now entered the bank lobby.")
-                third_answer = input("Front door or Fire Exit: ")
-                if third_answer.lower() in {"front door", "front", "fd"}:
+            while True:
+                second_answer = input("Blend in or Run: ").lower()
+                if second_answer in {"run", "r"}:
                     if not restart_game():
-                        break
-                elif third_answer.lower() in {"fire exit", "fire", "exit", "fe"}:
+                        return
+                    break
+                elif second_answer in {"blend in", "blend", "b"}:
                     print("")
-                    print("You made it to the car!")
-                    print(
-                        """
+                    print("You made it through!")
+                    print("You have now entered the bank lobby.")
+
+                    while True:
+                        third_answer = input("Front door or Fire Exit: ").lower()
+                        if third_answer in {"front door", "front", "fd"}:
+                            if not restart_game():
+                                return
+                            break
+                        elif third_answer in {"fire exit", "fire", "exit", "fe"}:
+                            print("")
+                            print("You made it to the car!")
+                            print(
+                                """
            .      ..
    __..---/______//-----.        ((  )
  .".--.```|    - /.--.  =:    ( VROOM! ))  
 (.: {} :__L______: {} :__; __--( __- -_= ) 
    *--*           *--*    """
-                    )
+                            )
+                            return
+                        else:
+                            print("Invalid input, try again...")
                     break
-
+                else:
+                    print("Invalid input, try again...")
         else:
             print("Invalid input, try again...")
 
